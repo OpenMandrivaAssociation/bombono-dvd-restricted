@@ -19,9 +19,25 @@
     USE_EXT_BOOST=true                                     
 
 
+
+
+######################
+# bombono-dvd/libs/adobe is copyrighted code.
+# I won't risk a contrib build.Sflo
+# Hardcode PLF build
+%define build_plf 1
+######################
+
+%if %{build_plf}
+%define distsuffix plf
+%define extrarelsuffix plf
+%endif
+
+
+
 Name:		bombono-dvd
 Version:	1.2.2
-Release:	1
+Release:	1%{?extrarelsuffix}
 Summary:	DVD authoring program with nice and clean GUI
 License:	GPLv2
 Group:		Video
@@ -40,7 +56,7 @@ BuildRequires:  boost-devel
 BuildRequires:	pkgconfig(libxml++-2.6)
 BuildRequires:	pkgconfig(mjpegtools) 
 BuildRequires:	ffmpeg-devel
-Requires:	dvdauthor 
+Requires:	    dvdauthor 
 Requires:       mjpegtools 
 Requires:       dvd+rw-tools 
 Requires:       twolame 
