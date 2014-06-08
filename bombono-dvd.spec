@@ -11,7 +11,7 @@
     CXX="%__cxx"                                           \\\
     CFLAGS=""                                              \\\
     CPPFLAGS="%{optflags} %{warn_flags} %{boost_flags}"    \\\
-    PREFIX=%{_prefix}                                      \\\
+    PREFIX="/usr"                                          \\\
     TEST=false                                             \\\
     TEST_BUILD=false                                       \\\
     USE_EXT_BOOST=true                                     
