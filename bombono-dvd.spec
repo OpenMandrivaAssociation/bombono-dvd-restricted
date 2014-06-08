@@ -1,3 +1,5 @@
+%define debug_package	%{nil}
+
 %global  boost_flags \\\
     -DBOOST_SYSTEM_NO_DEPRECATED -DBOOST_FILESYSTEM_VERSION=3
 %global warn_flags  \
