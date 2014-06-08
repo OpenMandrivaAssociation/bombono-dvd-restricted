@@ -65,7 +65,7 @@ scons  build
 
 %install
 rm config.opts
-scons DESTDIR=%{buildroot} install
+scons PREFIX="/usr" DESTDIR="%{buildroot}" install
 
 %find_lang %name
 
