@@ -59,7 +59,6 @@ Requires:       dvdauthor
 %patch0 -p1
 %patch1 -p1
 sed -i '\;#![ ]*/usr/bin/env;d'  $(find . -name SCons\*)
-rm -r debian libs/boost-lib src/mlib/tests libs/mpeg2dec ./libs/asl/adobe
 
 %build
 scons  build
