@@ -1,3 +1,5 @@
+%define debug_package	%{nil}
+
 %global  boost_flags \\\
     -DBOOST_SYSTEM_NO_DEPRECATED -DBOOST_FILESYSTEM_VERSION=3
 %global warn_flags  \
@@ -11,15 +13,31 @@
     CXX="%__cxx"                                           \\\
     CFLAGS=""                                              \\\
     CPPFLAGS="%{optflags} %{warn_flags} %{boost_flags}"    \\\
-    PREFIX=%{_prefix}                                      \\\
+    PREFIX="/usr"                                          \\\
     TEST=false                                             \\\
     TEST_BUILD=false                                       \\\
     USE_EXT_BOOST=true                                     
 
 
+
+
+######################
+# bombono-dvd/libs/adobe is copyrighted code.
+# I won't risk a contrib build.Sflo
+# Hardcode PLF build
+%define build_plf 1
+######################
+
+%if %{build_plf}
+%define distsuffix plf
+%define extrarelsuffix plf
+%endif
+
+
+
 Name:		bombono-dvd
 Version:	1.2.2
-Release:	1
+Release:	1%{?extrarelsuffix}
 Summary:	DVD authoring program with nice and clean GUI
 License:	GPLv2
 Group:		Video
@@ -38,7 +56,7 @@ BuildRequires:  boost-devel
 BuildRequires:	pkgconfig(libxml++-2.6)
 BuildRequires:	pkgconfig(mjpegtools) 
 BuildRequires:	ffmpeg-devel
-Requires:	dvdauthor 
+Requires:	    dvdauthor 
 Requires:       mjpegtools 
 Requires:       dvd+rw-tools 
 Requires:       twolame 
@@ -58,13 +76,14 @@ Requires:       dvdauthor
 %setup -q	
 %patch0 -p1
 %patch1 -p1
+sed -i '\;#![ ]*/usr/bin/env;d'  $(find . -name SCons\*)
 
 %build
 scons  build
 
 %install
 rm config.opts
-scons DESTDIR=%{buildroot} install
+scons PREFIX="/usr" DESTDIR="%{buildroot}" install
 
 %find_lang %name
 
