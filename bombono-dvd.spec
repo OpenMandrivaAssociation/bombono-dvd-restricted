@@ -41,7 +41,7 @@ Release:	1%{?extrarelsuffix}
 Summary:	DVD authoring program with nice and clean GUI
 License:	GPLv2
 Group:		Video
-URL:		http://www.bombono.org
+URL:		https://www.bombono.org
 Source0:	http://sourceforge.net/projects/bombono/files/bombono-dvd/1.2/%{name}-%{version}.tar.bz2
 Patch0:         filesys-include-path.patch
 Patch1:         0001-ffmpeg-has-renamed-CodecID-AVCodecID.patch
